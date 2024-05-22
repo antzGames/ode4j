@@ -118,7 +118,7 @@ public class ErrorHdl {
 			error_function.call(num, msg, ap);
 		} else {
 		}
-		throw new RuntimeException("#" + num + ": " + format(msg, ap));
+		throw new RuntimeException("#" + num + ": " + msg);
 		//exit (1);
 	}
 
