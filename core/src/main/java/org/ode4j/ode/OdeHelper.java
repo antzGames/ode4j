@@ -600,11 +600,14 @@ public abstract class OdeHelper {
 		return DxQuadTreeSpace.dQuadTreeSpaceCreate((DxSpace) space, 
 				Center, Extents, Depth);
 	}
+
 	/**
 	 * @param staticGeomCategoryMask Geoms that are marked as static are not checked
 	 * for mutual collision. See SpacePerformanceTest for an example.
-	 * @return SAP Space
+	 * @return BVH Space
+	 * @deprecated Please use {@link #createBVHSpace(long)}
 	 */
+	@Deprecated // TODO to be removed in 0.6.0 -> also remove DBhvSpace
 	public static DBhvSpace createBHVSpace (long staticGeomCategoryMask) {
 		return DxBVHSpace.bvhSpaceCreate(null, 16, false, 0.2, staticGeomCategoryMask);
 	}
@@ -615,11 +618,36 @@ public abstract class OdeHelper {
 	 * @param fatAabbMargin Suggested default: 0.2
 	 * @param staticGeomCategoryMask Geoms that are marked as static are not checked
 	 * for mutual collision. See SpacePerformanceTest for an example.
-	 * @return SAP space
+	 * @return BVH space
+	 * @deprecated Please use {@link #createBVHSpace(DSpace, int, boolean, double, long)}
 	 */
-	public static DBhvSpace createBHVSpace (DSpace space, int nodesPerLeaf, boolean highQuality, 
-			double fatAabbMargin, long staticGeomCategoryMask) {
-		return DxBVHSpace.bvhSpaceCreate((DxSpace) space, nodesPerLeaf, highQuality, fatAabbMargin, 
+	@Deprecated // TODO to be removed in 0.6.0 -> also remove DBhvSpace
+	public static DBhvSpace createBHVSpace (DSpace space, int nodesPerLeaf, boolean highQuality,
+											double fatAabbMargin, long staticGeomCategoryMask) {
+		return DxBVHSpace.bvhSpaceCreate((DxSpace) space, nodesPerLeaf, highQuality, fatAabbMargin,
+				staticGeomCategoryMask);
+	}
+
+	/**
+	 * @param staticGeomCategoryMask Geoms that are marked as static are not checked
+	 * for mutual collision. See SpacePerformanceTest for an example.
+	 * @return BVH Space
+	 */
+	public static DBVHSpace createBVHSpace (long staticGeomCategoryMask) {
+		return DxBVHSpace.bvhSpaceCreate(null, 16, false, 0.2, staticGeomCategoryMask);
+	}
+	/**
+	 * @param space space
+	 * @param nodesPerLeaf Suggested default: 4-16
+	 * @param highQuality Suggested default: false
+	 * @param fatAabbMargin Suggested default: 0.2
+	 * @param staticGeomCategoryMask Geoms that are marked as static are not checked
+	 * for mutual collision. See SpacePerformanceTest for an example.
+	 * @return BVH space
+	 */
+	public static DBVHSpace createBVHSpace (DSpace space, int nodesPerLeaf, boolean highQuality,
+											double fatAabbMargin, long staticGeomCategoryMask) {
+		return DxBVHSpace.bvhSpaceCreate((DxSpace) space, nodesPerLeaf, highQuality, fatAabbMargin,
 				staticGeomCategoryMask);
 	}
 
@@ -841,9 +869,9 @@ public abstract class OdeHelper {
 	}
 	
 	/**
-	 * Close ODE after it is not needed any more.
+	 * Close ODE after it is not needed anymore.
 	 * <p>
-	 * The function is required to be called when program does not need ODE features any more.
+	 * The function is required to be called when program does not need ODE features anymore.
 	 * The call to <tt>dCloseODE</tt> releases all the resources allocated for library
 	 * including all the thread local data that might be allocated for all the threads
 	 * that were using ODE.
@@ -988,10 +1016,25 @@ public abstract class OdeHelper {
 	 * ODE_EXT_trimesh
 	 * ODE_EXT_opcode
 	 * ODE_EXT_gimpact
-	 * ODE_EXT_malloc_not_alloca
-	 * ODE_EXT_gyroscopic
+	 * ODE_EXT_malloc_not_alloca  ---
+	 * ODE_EXT_gyroscopic -----
 	 * ODE_OPC_16bit_indices
 	 * ODE_OPC_new_collider
+	 * ODE_EXT_libccd
+	 * ODE_CCD_IMPL_internal
+	 * ODE_CCD_COLL_box_cyl
+	 * ODE_CCD_COLL_cyl_cyl
+	 * ODE_CCD_COLL_cap_cyl
+	 * ODE_CCD_COLL_box_conv
+	 * ODE_CCD_COLL_cap_conv
+	 * ODE_CCD_COLL_conv_cyl
+	 * ODE_CCD_COLL_conv_sph
+	 * ODE_CCD_COLL_conv_conv
+	 * ODE_EXT_mt_collisions
+	 * ODE_EXT_threading
+	 * ODE_THR_builtin_impl
+	 * ODE_EXT_inelastic_collisions
+	 *
 	 * @return String
 	 */
 	public static String getConfiguration () {
@@ -999,7 +1042,7 @@ public abstract class OdeHelper {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return The version String.
 	 */
 	public static String getVersion() {

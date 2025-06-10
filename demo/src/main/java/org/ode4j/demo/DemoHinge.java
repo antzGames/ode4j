@@ -65,8 +65,8 @@ public class DemoHinge extends dsFunctions {
 
 
 	// start simulation - set viewpoint
-	private static float[] xyz = {1.0382f,-1.0811f,1.4700f};
-	private static float[] hpr = {135.0000f,-19.5000f,0.0000f};
+	private static final float[] xyz = {1.0382f,-1.0811f,1.4700f};
+	private static final float[] hpr = {135.0000f,0.000f,0.0000f};
 
 	@Override
 	public void start()
@@ -100,7 +100,7 @@ public class DemoHinge extends dsFunctions {
 			// add an oscillating torque to body 0, and also damp its rotational motion
 			final DVector3C w = body[0].getAngularVel ();
 			body[0].addTorque ( kd*w.get0(), kd*w.get1()+0.1*Math.cos(a), kd*w.get2()+0.1*Math.sin(a));
-			world.step (0.05);
+			world.quickStep(0.05);
 			a += 0.01;
 
 			// occasionally re-orient one of the bodies to create a deliberate error.
@@ -172,9 +172,7 @@ public class DemoHinge extends dsFunctions {
 		hinge.setAxis (1,-1,1.41421356);
 
 		// run simulation
-		//	  dsSimulationLoop (argc,argv,352,288,&fn);
-//		dsSimulationLoop (args,352,288,fn);
-		dsSimulationLoop (args,640,480,this);
+		dsSimulationLoop(args, DS_SIMULATION_DEFAULT_WIDTH, DS_SIMULATION_DEFAULT_HEIGHT, this);
 
 		world.destroy ();
 		OdeHelper.closeODE();

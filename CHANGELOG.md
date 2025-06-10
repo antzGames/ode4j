@@ -25,6 +25,50 @@
 
 --> See TODO.txt
 
+## Unreleased
+
+- Nothing yet
+
+## 0.5.4 - 2025-05-25
+- Fixed javadoc for `DPUJoint`, `DVector` and `DWorld` [#155](https://github.com/tzaeschke/ode4j/pull/154)
+- Fixed exception when colliding DConvex with DTrimeshHeightfield [#152](https://github.com/tzaeschke/ode4j/issues/152)
+- Improved javadoc for `DContact` and `DCapsule` (AustinHoover) [#150](https://github.com/tzaeschke/ode4j/pull/149)
+- Add some math functions for element wise multiplication and division (Hadamard) 
+  [#145](https://github.com/tzaeschke/ode4j/issues/145):
+    - `DVector3 addHadMul(DVector3C v, DVector3C w)`
+    - `DVector3 addHadMul(DVector3C v, DVector3C w, double d)`
+    - `DVector3 addHadDiv(DVector3C v, DVector3C w)`
+    - `DVector3 addHadDiv(DVector3C v, DVector3C w, double d)`
+    - `DVector3 addHadMul(DVector3C v)`
+    - `DVector3 addHadDiv(DVector3C v)`
+    - `DVector3 addHadReciprocal()`
+- Fixed BVH spelling in API [#149](https://github.com/tzaeschke/ode4j/pull/149)
+- Post 0.16.6 cleanup [#148](https://github.com/tzaeschke/ode4j/pull/148)
+  - Re-enabled new BoxPlane collider
+  - deprecated `DWorld.step()`
+  - `DemoCrash` cleanup
+- Port updates until 0.16.6 (previous: 0.16.2/.3) ([#147](https://github.com/tzaeschke/ode4j/pull/147)). This includes:
+  - Fixed porting bug in `dxQuickStepIsland_Stage4LCP_IterationStep`:
+    `fc_ptr2P = b2 * CFE__MAX;` was declared `int` and thus overwrote the existing variable.
+    This appears to fix known stability issues, e.g. large walls of boxes. 
+  - New box-plane collider
+  - new `DemoTrimeshCollision`
+  - new API method in DPUJoint: `void addTorques (double torque1, double torque2);`
+  - Cleanup:
+    - Lots of typos fixed
+    - Demos have new default window size and some a new default view position
+    - DemoFeedback has changed parameters.
+    - Fix? DxHeightfield.dCollideHeightfieldZone() cleaned up
+    - Fix? DLCP swapping updated
+  - Skipped:
+    - quickstep.cpp / dxQuickStepIsland (allowedThreads != 1)
+    - threading_impl*, threading_pool*
+  - verify later:
+    - Should dxQuickStepIsland_Stage4LCP_IterationStartSingleThread()
+    - get the same updates as dxQuickStepIsland_Stage4LCP_IterationStart()?
+    - ThrsafeDecrement
+    - Multithrading: verify calculateThreadingLimitedThreadCount()
+
 ## 0.5.3 - 2024-04-28
 
 - Fix INTERNAL ERROR in `FastLSolve.solveL1Straight()` caused by bug in `DLCP.solve1()`.

@@ -35,13 +35,7 @@ import static org.ode4j.ode.internal.Common.dIASSERT;
 
 import org.ode4j.math.DMatrix3;
 import org.ode4j.math.DVector3;
-import org.ode4j.ode.DAABB;
-import org.ode4j.ode.DColliderFn;
-import org.ode4j.ode.DContactGeom;
-import org.ode4j.ode.DContactGeomBuffer;
-import org.ode4j.ode.DGeom;
-import org.ode4j.ode.DHeightfieldData;
-import org.ode4j.ode.DSpace;
+import org.ode4j.ode.*;
 
 /**
  *
@@ -87,7 +81,7 @@ public class DxTrimeshHeightfield extends DxAbstractHeightfield {
 
     //Uncomment this #define to use the (0,0) corner of the geom as the origin,
     //rather than the center. This was the way the original heightfield worked,
-    //but as it does not match the way all other geometries work, so for constancy it
+    //but as it does not match the way all other geometries work, so for consistency it
     //was changed to work like this.
 
     //#define DHEIGHTFIELD_CORNER_ORIGIN
@@ -613,6 +607,10 @@ public class DxTrimeshHeightfield extends DxAbstractHeightfield {
         }
         DxGimpactData data = new DxGimpactData();
         data.build(vertices, faces);
+        if (o2 instanceof DxConvex) {
+            final int preprocessFlags = (1 << DTriMeshData.dTRIDATAPREPROCESS_BUILD.CONCAVE_EDGES) | (1 << DTriMeshData.dTRIDATAPREPROCESS_BUILD.FACE_ANGLES);
+            data.preprocess2(preprocessFlags, null);
+        }
         DxGimpact trimesh = new DxGimpact(null, data, null, null, null);
         trimesh.recomputeAABB();
         numTerrainContacts = DxGeom.dCollide(trimesh, o2, flags, contacts, skip);

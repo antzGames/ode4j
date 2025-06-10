@@ -55,11 +55,25 @@ public class DContact {
 		public double bounce;                 
 		/** Bouncing threshold */
 		public double bounce_vel;             
+		/**
+		 * Error Reduction Parameter.
+		 * How much of the penetration is corrected per time step.
+		 * Note that mode must be set with dContactSoftERP for this to have an effect.
+		 * @see OdeConstants#dContactSoftERP
+		 */
 		public double soft_erp;
+		/**
+		 * Constraint Force Mixing.
+		 * How soft or spongy the contact is.
+		 * Note that mode must be set with dContactSoftCFM for this to have an effect.
+		 * @see OdeConstants#dContactSoftCFM
+		 */
 		public double soft_cfm;
 		public double motion1,motion2,motionN;
 		public double slip1;
 		public double slip2;
+		/** Inward force limit (zero or a negative number up to -dInfinity) */
+		public double inward_force_limit;
 
 		public DSurfaceParameters() {}
 
@@ -81,6 +95,10 @@ public class DContact {
 			 slip2 = 0;
 		}
 
+		/**
+		 * Sets a DSurfaceParameters object to copy the values of another DSurfaceParameters object
+		 * @param other The DSurfaceParameters object to copy values from
+		 */
 		public void set(DSurfaceParameters other) {
 			mode = other.mode;
 			mu = other.mu;
