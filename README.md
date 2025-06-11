@@ -50,7 +50,7 @@ and lastly add this to your `GdxDefinition.gwt.xml` file:
 
 ## Runtime examples
 
-Some examples can be found in my [https://github.com/antzGames/gdx-ode4j-examples](https://github.com/antzGames/gdx-ode4j-examples/tree/0.5.1_Demos) repository.
+Some examples can be found in my [https://github.com/antzGames/gdx-ode4j-examples](https://github.com/antzGames/gdx-ode4j-examples) repository.
 
 ## Math classes
 
