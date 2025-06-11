@@ -5,12 +5,9 @@
 ![image](https://github.com/antzGames/gdx-ode4j/assets/10563814/c59c282d-9198-4066-81b7-0de4e5808f64)
 
 This is a ODE4J library compatible with all libGDX backends, including GWT.  It is based on
-version **0.5.3** of [Open Dynamics Engine for Java](https://github.com/tzaeschke/ode4j).
+version **0.5.4** of [Open Dynamics Engine for Java](https://github.com/tzaeschke/ode4j).
 
-If you want to use ODE4J only on libGDX Desktop/Android/iOS backends then I recommend you use [odej4](https://github.com/tzaeschke/ode4j) directly.  
-However if you want cross platform support (i.e include GWT support) then you need to use this library.
-
-Currently this is the only 3D physics engine option for GWT on libGDX.
+Currently this is the only 3D physics engine that works on the GWT back-end in libGDX.
 
 ## How to use in your project
 
@@ -22,7 +19,7 @@ project(":core") {
 
     dependencies {
         ...
-          api "com.github.antzGames:ode4j:0.5.3"
+          api "com.github.antzGames:ode4j:0.5.4-SNAPSHOT"
     }
 }
 ```
@@ -34,8 +31,8 @@ project(":html") {
     ...
     dependencies {
         ...
-        implementation "com.github.antzGames:ode4j:0.5.3:sources"
-        implementation "com.github.tommyettinger:formic:0.1.4:sources"
+        implementation "com.github.antzGames:ode4j:0.5.4-SNAPSHOT:sources"
+        implementation "com.github.tommyettinger:formic:0.1.5:sources"
     }
 }
 ```
@@ -54,10 +51,6 @@ and lastly add this to your `GdxDefinition.gwt.xml` file:
 ## Runtime examples
 
 Some examples can be found in my [https://github.com/antzGames/gdx-ode4j-examples](https://github.com/antzGames/gdx-ode4j-examples/tree/0.5.1_Demos) repository.
-
-Or play with them on [itch.io](https://antzgames.itch.io/physics-in-a-browser).
-
-https://github.com/antzGames/gdx-ode4j/assets/10563814/bc46a9a9-f2e8-414b-bfde-8be6ea54e46b
 
 ## Math classes
 
@@ -108,7 +101,7 @@ public void render(float deltaTime){
 
 ### Performance
 
-I have tried jBullet, PhysX and ODE physics engines with libGDX.  ODE is the slowest, and the reason being is that in ODE everything is using double precision.
+I have tried jBullet, PhysX, Jolt and ODE physics engines with libGDX.  ODE is the slowest, and the reason being is that in ODE4J is 100% Java and therefore no SIMD optimization.
 
 ## Where to get ODE/ode4j documentation and help
 
@@ -128,14 +121,6 @@ There is also the [old website](https://tzaeschke.github.io/ode4j-old/), includi
 
 Here is a [Youtube video](https://www.youtube.com/watch?v=ENlpu_Jjp3Q) of a list of games that used ODE from 2002-2015.  You will be suprised how many of your favorite games used this physcis libary.
 
-## Versions
-
-Both ODE4J `v0.4.1` and `v0.5.3` have been ported.
-
-Version v0.4.1 GitHub repo: [https://github.com/antzGames/gdx-ode4j](https://github.com/antzGames/gdx-ode4j)
-
-Version v0.5.1 GitHub repo: [https://github.com/antzGames/ode4j](https://github.com/antzGames/ode4j)
-
 ## Where has ODE4J libGDX version been used?
 
 Here are some games and projects and tutorials that have used v0.4.1 of ODE4J for libGDX:
@@ -147,8 +132,6 @@ Here are some games and projects and tutorials that have used v0.4.1 of ODE4J fo
 [https://monstrous-software.itch.io/fps-demo](https://monstrous-software.itch.io/fps-demo)
 
 [https://antzgames.itch.io/physics-in-a-browser](https://antzgames.itch.io/physics-in-a-browser)
-
-[https://antzgames.itch.io/shotgun-wedding](https://antzgames.itch.io/shotgun-wedding)
 
 [https://antzgames.itch.io/tank-vs-dinos](https://antzgames.itch.io/tank-vs-dinos)
 
