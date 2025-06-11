@@ -134,7 +134,7 @@ public class Objects_H {
 
 			// std::copy(g_QuickStepParameters_marginalDeltaValuesInitializer, g_QuickStepParameters_marginalDeltaValuesInitializer + dARRAY_SIZE(g_QuickStepParameters_marginalDeltaValuesInitializer), m_marginalDeltaValues);
 			//m_marginalDeltaValues = g_QuickStepParameters_marginalDeltaValuesInitializer.clone(); // cannot clone array in GWT
-			m_marginalDeltaValues = g_QuickStepParameters_marginalDeltaValuesInitializer.clone();
+			m_marginalDeltaValues = g_QuickStepParameters_marginalDeltaValuesInitializer;
 			Common.dSASSERT(g_QuickStepParameters_marginalDeltaValuesInitializer.length == m_marginalDeltaValues.length);
 
 			DWorld.initializeQuickStepIterationCount_DynamicAdjustmentStatistics(m_internal_statistics);
