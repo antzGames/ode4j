@@ -2677,10 +2677,10 @@ dmemestimate_fn_t, dmaxcallcountestimate_fn_t {
 		} else {
 			int iterationCount = Atomics.ThrsafeIncrement(iterationCountStorage);
 			if (iterationCount % 256 == 0) {
-				System.out.printf("Iteration %08u: PE=%u LE=%u, FE=%u\r", iterationCount,
-						world.qs.GetStatisticsPrematureExitsStorage().get(),
-						world.qs.GetStatisticsProlongedExecutionsStorage().get(),
-						world.qs.GetStatisticsFullExtraExecutionsStorage().get());
+//				System.out.printf("Iteration %08u: PE=%u LE=%u, FE=%u\r", iterationCount,
+//						world.qs.GetStatisticsPrematureExitsStorage().get(),
+//						world.qs.GetStatisticsProlongedExecutionsStorage().get(),
+//						world.qs.GetStatisticsFullExtraExecutionsStorage().get());
 			}
 		} // #endif
 

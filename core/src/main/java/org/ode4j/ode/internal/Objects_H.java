@@ -133,6 +133,7 @@ public class Objects_H {
 	    	w = 1.3;
 
 			// std::copy(g_QuickStepParameters_marginalDeltaValuesInitializer, g_QuickStepParameters_marginalDeltaValuesInitializer + dARRAY_SIZE(g_QuickStepParameters_marginalDeltaValuesInitializer), m_marginalDeltaValues);
+			//m_marginalDeltaValues = g_QuickStepParameters_marginalDeltaValuesInitializer.clone(); // cannot clone array in GWT
 			m_marginalDeltaValues = g_QuickStepParameters_marginalDeltaValuesInitializer.clone();
 			Common.dSASSERT(g_QuickStepParameters_marginalDeltaValuesInitializer.length == m_marginalDeltaValues.length);
 

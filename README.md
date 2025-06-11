@@ -19,7 +19,7 @@ project(":core") {
 
     dependencies {
         ...
-          api "com.github.antzgames:ode4j:0.5.4"
+          api "com.github.antzgames:ode4j:-SNAPSHOT"
     }
 }
 ```
@@ -31,7 +31,7 @@ project(":html") {
     ...
     dependencies {
         ...
-        implementation "com.github.antzgames:ode4j:0.5.4:sources"
+        implementation "com.github.antzgames:ode4j:-SNAPSHOT:sources"
         implementation "com.github.tommyettinger:formic:0.1.5:sources"
     }
 }
