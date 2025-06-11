@@ -19,7 +19,7 @@ project(":core") {
 
     dependencies {
         ...
-          api "com.github.antzGames:ode4j:0.5.4-SNAPSHOT"
+          api "com.github.antzgames:ode4j:0.5.4"
     }
 }
 ```
@@ -31,7 +31,7 @@ project(":html") {
     ...
     dependencies {
         ...
-        implementation "com.github.antzGames:ode4j:0.5.4-SNAPSHOT:sources"
+        implementation "com.github.antzgames:ode4j:0.5.4:sources"
         implementation "com.github.tommyettinger:formic:0.1.5:sources"
     }
 }
@@ -61,6 +61,9 @@ I added a math utility class called [Ode2GDXMathUtils](https://github.com/antzGa
 ```java
     Quaternion q1 = Ode2GdxMathUtils.getGdxQuaternion(odeQuaternion);  
     Quaternion q2 = Ode2GdxMathUtils.getGdxQuaternion(odeMat3);
+
+    DQuaternion dq1 = Ode2GdxMathUtils.getOde4jQuaternion(gdxQuaternion); // libGDX to ODE4J 
+    
 ```
 
 In addition ode4j uses double and not float like most of libGDX's math classes.
